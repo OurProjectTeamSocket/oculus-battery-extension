@@ -1,0 +1,6 @@
+{
+    "uuid": "test@myextensions.example.com",
+    "name": "Hello World",
+    "description": "Adds a 'Hello World' button to the top bar.",
+    "shell-version": ["44"]
+}
