@@ -1,6 +1,8 @@
 const { GObject, St } = imports.gi;
+
 const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
+const Gio = imports.gi.Gio;
 
 var HelloWorldButton = GObject.registerClass(
 class HelloWorldButton extends PanelMenu.Button {
@@ -8,9 +10,9 @@ class HelloWorldButton extends PanelMenu.Button {
         super._init(0.0, 'Hello World');
 
         let icon = new St.Icon({
-            icon_name: 'system-run-symbolic',
+            gicon: Gio.icon_new_for_string('./Images/sonic.png'),
             style_class: 'system-status-icon'
-        });
+        });        
 
         this.add_child(icon);
     }
