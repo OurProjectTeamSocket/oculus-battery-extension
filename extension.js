@@ -4,7 +4,15 @@ const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
 const Gio = imports.gi.Gio;
 
-var prefix = '[OBX]'
+const prefix = '[OBX]'
+
+let panelButton, panelButtonText, timeout
+let counter = 0
+
+const setButtonText = () => {
+    counter++
+    panelButtonText.set_text( counter.toString() )
+}
 
 const setButtonText = () => {
     counter++
@@ -19,7 +27,7 @@ class HelloWorldButton extends PanelMenu.Button {
         super._init(0.0, 'Hello World');
 
         let icon = new St.Icon({
-            gicon: Gio.icon_new_for_string('/home/nintys/.local/share/gnome-shell/extensions/test@myextensions.example.com/Images/sonic.png'), // WORK ONLY IF I GIVE A FULL PATH
+            gicon: Gio.icon_new_for_string('/home/mati/.local/share/gnome-shell/extensions/test@myextensions.example.com/Images/sonic.png'), // WORK ONLY IF I GIVE A FULL PATH
             style_class: 'system-status-icon'
         });        
 
