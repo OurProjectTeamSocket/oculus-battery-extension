@@ -5,6 +5,7 @@ const PanelMenu = imports.ui.panelMenu;
 const Gio = imports.gi.Gio;
 
 const prefix = '[OBX]'
+const prefixC = '[COUNT]'
 
 let panelButton, panelButtonText, timeout
 let counter = 0
@@ -13,7 +14,7 @@ const setButtonText = () => {
     counter++
     panelButtonText.set_text( counter.toString() )
 
-    log(`${prefix}, counter: ${counter} or ${counter.toString()}`)
+    log(`${prefixC}, counter: ${counter} or ${counter.toString()}`)
 }
 
 var HelloWorldButton = GObject.registerClass(
@@ -26,10 +27,11 @@ class HelloWorldButton extends PanelMenu.Button {
             style_class: 'system-status-icon'
         });        
 
-        log(prefix, " Ikona: ", icon) // This adds logs - se se logs use this: journalctl -f -o cat /usr/bin/gnome-shell and restart gnome // color text don't work
+        log(`${prefix} Ikona: ${icon}`) // This adds logs - se se logs use this: journalctl -f -o cat /usr/bin/gnome-shell and restart gnome // color text don't work
 
         this.connect('button_press_event', () => {
-            log(prefix, "Pressed")
+            log(`${prefix} pressed`)
+            setButtonText()
         });
 
         this.add_child(icon);
