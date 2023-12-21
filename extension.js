@@ -10,7 +10,7 @@ class HelloWorldButton extends PanelMenu.Button {
         super._init(0.0, 'Hello World');
 
         let icon = new St.Icon({
-            gicon: Gio.icon_new_for_string('./Images/sonic.png'),
+            gicon: Gio.icon_new_for_string("/home/nintys/.local/share/gnome-shell/extensions/test@myextensions.example.com/Images/sonic.png"), // WORK ONLY IF I GIVE A FULL PATH
             style_class: 'system-status-icon'
         });        
 
