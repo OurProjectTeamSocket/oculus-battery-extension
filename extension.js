@@ -12,11 +12,6 @@ let counter = 0
 const setButtonText = () => {
     counter++
     panelButtonText.set_text( counter.toString() )
-}
-
-const setButtonText = () => {
-    counter++
-    panelButtonText.set_text( counter.toString() )
 
     log(`${prefix}, counter: ${counter} or ${counter.toString()}`)
 }
