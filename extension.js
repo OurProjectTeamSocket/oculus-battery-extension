@@ -14,6 +14,8 @@ class HelloWorldButton extends PanelMenu.Button {
             style_class: 'system-status-icon'
         });        
 
+        log("\033[91m Ikona: ", icon, "\033[0m") // This adds logs - se se logs use this: journalctl -f -o cat /usr/bin/gnome-shell and restart gnome // color text don't work
+
         this.add_child(icon);
     }
 });
