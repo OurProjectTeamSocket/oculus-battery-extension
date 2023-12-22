@@ -1,13 +1,14 @@
 const { GObject, St } = imports.gi;
 
+const ExtensionUtils = imports.misc.extensionUtils;
+const Me = ExtensionUtils.getCurrentExtension();
+
 const PanelMenu = imports.ui.panelMenu;
 const Main = imports.ui.main;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 
 const prefix = '[OBX]'
-
-var path = GLib.get_current_dir() + '/.local/share/gnome-shell/extensions/Oculus-Battery-Extension@ourprojectteam.com';
 
 var HelloWorldButton = GObject.registerClass(
 class HelloWorldButton extends PanelMenu.Button {
@@ -16,12 +17,12 @@ class HelloWorldButton extends PanelMenu.Button {
 
         log(prefix, "INIT")
 
-        // Temporary fix for diffrent users to use a inages from relative folder
-        log(prefix, path + '/Images/sonic.png')
+        log(prefix, Me.dir.get_path())
+
         let icon
         try {
             icon = new St.Icon({
-                gicon: Gio.icon_new_for_string(path + '/Images/sonic.png'), // WORK ONLY IF I GIVE A FULL PATH
+                gicon: Gio.icon_new_for_string(Me.dir.get_path() + '/Images/sonic.png'), // WORK ONLY IF I GIVE A FULL PATH
                 style_class: 'system-status-icon'
             });
         } catch (error) {
