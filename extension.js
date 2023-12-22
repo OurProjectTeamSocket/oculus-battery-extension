@@ -5,22 +5,9 @@ const Main = imports.ui.main;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 
-// const cmd = requires();
-
 const prefix = '[OBX]'
-const prefixC = '[COUNT]'
 
-let panelButton, panelButtonText, timeout
-let counter = 0
-
-var path = GLib.get_current_dir() + '/.local/share/gnome-shell/extensions/test@myextensions.example.com/';
-
-const setButtonText = () => {
-    counter++
-    panelButtonText.set_text( counter.toString() )
-
-    log(`${prefixC}, counter: ${counter} or ${counter.toString()}`)
-}
+var path = GLib.get_current_dir() + '/.local/share/gnome-shell/extensions/Oculus-Battery-Extension@ourprojectteam.com';
 
 var HelloWorldButton = GObject.registerClass(
 class HelloWorldButton extends PanelMenu.Button {

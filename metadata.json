@@ -1,6 +1,11 @@
 {
-    "uuid": "test@myextensions.example.com",
-    "name": "Hello World",
-    "description": "Adds a 'Hello World' button to the top bar.",
-    "shell-version": ["44"]
+    "name": "Oculus-Battery-Extension",
+    "description": "Shows a oculus battery level",
+    "uuid": "Oculus-Battery-Extension@ourprojectteam.com",
+    "shell-version": [
+        "44"
+    ],
+    "schemas": [
+        "org.gnome.shell.extensions.Oculus_Battery_Extension"
+    ]
 }
