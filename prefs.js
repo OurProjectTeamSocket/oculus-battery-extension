@@ -40,26 +40,51 @@ function buildPrefsWidget() {
 
 function createStringSetting() {
     let vbox = new Gtk.Box({
+        orientation: Gtk.Orientation.VERTICAL
+    });
+
+    let hbox = new Gtk.Box({
+        orientation: Gtk.Orientation.HORIZONTAL
+    })
+
+    let hbox2 = new Gtk.Box({
         orientation: Gtk.Orientation.HORIZONTAL
     });
 
-    // let vbox2 = new Gtk.Box({
-    //     orientation: Gtk.Orientation.VERTICAL,
-    // });
-
-    vbox.set_margin_top(5);
-    // vbox2.set_margin_top(10);
+    hbox.set_margin_top(5);
+    hbox2.set_margin_top(20);
 
     let settingLabel = new Gtk.Label({
         label: "Example String",
-        halign: Gtk.Align.START
+        halign: Gtk.Align.START,
     });
+    // settingLabel.set_margin_right(10) Doesn't work
 
     let settingEntry = new Gtk.Entry({
         text: this.settings.get_string('example-string')
     });
+    // settingEntry.set_margin_right(10)
 
     let settingButton = new Gtk.Button({
+        label: "submit",
+    })
+
+    // Creating practically the same objects again and again 
+    // (setting Label, Entry, Button etc)
+    // because otherwise it doesn't show the second object. 
+    // (these labels etc can't be used second time)
+    // That's why the code is so long and cannot be shortened :/
+    
+    let settingLabel2 = new Gtk.Label({
+        label: "Example String",
+        halign: Gtk.Align.START
+    });
+
+    let settingEntry2 = new Gtk.Entry({
+        text: this.settings.get_string('example-string')
+    });
+
+    let settingButton2 = new Gtk.Button({
         label: "submit",
     })
 
@@ -67,15 +92,20 @@ function createStringSetting() {
         this.settings.set_string('example-string', entry.text);
     });
 
-    // First line of label, text input and submit button
-    vbox.append(settingLabel);
-    vbox.append(settingEntry);
-    vbox.append(settingButton);
+    // First row of label, text input and submit button
+    hbox.append(settingLabel);
+    hbox.append(settingEntry);
+    hbox.append(settingButton);
 
-    // Second one
-    // vbox2.append(settingLabel);
-    // vbox2.append(settingEntry);
-    // vbox2.append(settingButton);
+    // Second row of the same objects
+    hbox2.append(settingLabel2);
+    hbox2.append(settingEntry2);
+    hbox2.append(settingButton2);
 
+    // Appending to container (hbox)
+    vbox.append(hbox)
+    vbox.append(hbox2)
+
+    // Returning ONE BOX with all appended boxes
     return vbox;
 }
