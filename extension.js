@@ -7,6 +7,8 @@ const Gio = imports.gi.Gio;
 
 const prefix = '[OBX]'
 
+// let UIFolderPath = this.dir.get_child('ui').get_path();
+
 var path = GLib.get_current_dir() + '/.local/share/gnome-shell/extensions/Oculus-Battery-Extension@ourprojectteam.com';
 
 var HelloWorldButton = GObject.registerClass(

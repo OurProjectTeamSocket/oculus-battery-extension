@@ -5,7 +5,7 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
 function init() {
-    // ExtensionUtils.initTranslations();
+    // ExtensionUtils.initTranslations(); 
 }
 
 function buildPrefsWidget() {
@@ -39,10 +39,16 @@ function buildPrefsWidget() {
 }
 
 function createStringSetting() {
-    let hbox = new Gtk.Box({
-        orientation: Gtk.Orientation.HORIZONTAL,
+    let vbox = new Gtk.Box({
+        orientation: Gtk.Orientation.HORIZONTAL
     });
-    hbox.set_margin_top(5);
+
+    // let vbox2 = new Gtk.Box({
+    //     orientation: Gtk.Orientation.VERTICAL,
+    // });
+
+    vbox.set_margin_top(5);
+    // vbox2.set_margin_top(10);
 
     let settingLabel = new Gtk.Label({
         label: "Example String",
@@ -52,12 +58,24 @@ function createStringSetting() {
     let settingEntry = new Gtk.Entry({
         text: this.settings.get_string('example-string')
     });
+
+    let settingButton = new Gtk.Button({
+        label: "submit",
+    })
+
     settingEntry.connect('notify::text', (entry) => {
         this.settings.set_string('example-string', entry.text);
     });
 
-    hbox.append(settingLabel);
-    hbox.append(settingEntry);
+    // First line of label, text input and submit button
+    vbox.append(settingLabel);
+    vbox.append(settingEntry);
+    vbox.append(settingButton);
 
-    return hbox;
+    // Second one
+    // vbox2.append(settingLabel);
+    // vbox2.append(settingEntry);
+    // vbox2.append(settingButton);
+
+    return vbox;
 }
