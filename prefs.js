@@ -55,11 +55,12 @@ function createStringSetting() {
         orientation: Gtk.Orientation.HORIZONTAL
     });
 
-    hbox.set_margin_top(5);
+    hbox.set_margin_top(20);
     hbox2.set_margin_top(20);
+    hbox3.set_margin_top(20)
 
     let settingLabel = new Gtk.Label({
-        label: "Text-input STRING",
+        label: "Text-input STRING    ",
         halign: Gtk.Align.START,
     });
     // settingLabel.set_margin_right(10) Doesn't work
@@ -80,7 +81,7 @@ function createStringSetting() {
     // That's why the code is so long and cannot be shortened :/
     
     let settingLabel2 = new Gtk.Label({
-        label: "Text-input INT",
+        label: "Text-input INT    ",
         halign: Gtk.Align.START
     });
 
