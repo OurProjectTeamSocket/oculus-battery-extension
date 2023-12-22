@@ -51,6 +51,10 @@ function createStringSetting() {
         orientation: Gtk.Orientation.HORIZONTAL
     });
 
+    let hbox3 = new Gtk.Box({
+        orientation: Gtk.Orientation.HORIZONTAL
+    });
+
     hbox.set_margin_top(5);
     hbox2.set_margin_top(20);
 
@@ -80,12 +84,22 @@ function createStringSetting() {
         halign: Gtk.Align.START
     });
 
+    //  Supposed to be int entry (idk how to filter type of input)
     let settingEntry2 = new Gtk.Entry({
         text: this.settings.get_string('example-string')
     });
 
     let settingButton2 = new Gtk.Button({
         label: "submit",
+    })
+
+    // Objects, to the third hbox (hbox3 in this case)
+    let settingButton3 = new Gtk.Button({
+        text: this.settings.get_string('example-string')
+    })
+
+    let settingButton4 = new Gtk.Button({
+        text: this.settings.get_string('example-string')
     })
 
     settingEntry.connect('notify::text', (entry) => {
@@ -102,10 +116,15 @@ function createStringSetting() {
     hbox2.append(settingEntry2);
     hbox2.append(settingButton2);
 
+    // Third one with a button at first and a save button
+    hbox3.append(settingButton3)
+    hbox3.append(settingButton4)
+
     // Appending to container (hbox)
     vbox.append(hbox)
     vbox.append(hbox2)
+    vbox.append(hbox3)
 
-    // Returning ONE BOX with all appended boxes
+    // Returning ONE BOX with all appended horizontal boxes 
     return vbox;
 }
