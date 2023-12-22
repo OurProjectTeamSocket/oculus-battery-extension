@@ -59,7 +59,7 @@ function createStringSetting() {
     hbox2.set_margin_top(20);
 
     let settingLabel = new Gtk.Label({
-        label: "Example String",
+        label: "Text-input STRING",
         halign: Gtk.Align.START,
     });
     // settingLabel.set_margin_right(10) Doesn't work
@@ -80,7 +80,7 @@ function createStringSetting() {
     // That's why the code is so long and cannot be shortened :/
     
     let settingLabel2 = new Gtk.Label({
-        label: "Example String",
+        label: "Text-input INT",
         halign: Gtk.Align.START
     });
 
@@ -95,11 +95,11 @@ function createStringSetting() {
 
     // Objects, to the third hbox (hbox3 in this case)
     let settingButton3 = new Gtk.Button({
-        text: this.settings.get_string('example-string')
+        label: "button_init",
     })
 
     let settingButton4 = new Gtk.Button({
-        text: this.settings.get_string('example-string')
+        label: "button_save",
     })
 
     settingEntry.connect('notify::text', (entry) => {
