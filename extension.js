@@ -73,17 +73,14 @@ function init() {
     return new Extension();
 }
 
-function useCommand(commandInput) {
+useCommand = (commandInput) => {
     let [result, stdout, stderr] = GLib.spawn_command_line_sync(commandInput)
-    
-    if (result) {
-        log(`${prefix} Output: ${stdout.toString()}`)
-    } else {
-        log(`${prefix} Error: ${stderr.toString()}`)
-    }
+
+    if (result) log(`${prefix} Output: ${stdout.toString()}`)
+    else log(`${prefix} Error: ${stderr.toString()}`)
     return true;
 }
 
-function minutesToMiliseconds(minutes) {
+minutesToMiliseconds = (minutes) => {
     return ( minutes * 60 ) * 1000
-}
+} 
