@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="gnome-shell-extensions">
-  <schema id="org.gnome.shell.extensions.Oculus_Battery_Extension" path="/org/gnome/shell/extensions/Oculus_Battery_Extension/">
-    <key name="example-string" type="s">
-      <default>''</default>
-      <summary>Example string</summary>
-      <description>This key is an example of a string and does not affect the functionality of your extension.</description>
+  <schema id="org.gnome.shell.extensions.my-extension" path="/org/gnome/shell/extensions/my-extension/">
+    <key name="my-string" type="s">
+      <default>'default-value'</default>
+      <summary>My string</summary>
+      <description>This key is an example of a string for my extension.</description>
+    </key>
+    <key name="my-integer" type="i">
+      <default>10</default>
+      <summary>My integer</summary>
+      <description>This key is an example of an integer for my extension.</description>
     </key>
   </schema>
 </schemalist>
