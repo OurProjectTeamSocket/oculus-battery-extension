@@ -5,7 +5,7 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
 function init() {
-    // ExtensionUtils.initTranslations();
+    // ExtensionUtils.initTranslations(); 
 }
 
 function buildPrefsWidget() {
@@ -39,25 +39,93 @@ function buildPrefsWidget() {
 }
 
 function createStringSetting() {
-    let hbox = new Gtk.Box({
-        orientation: Gtk.Orientation.HORIZONTAL,
+    let vbox = new Gtk.Box({
+        orientation: Gtk.Orientation.VERTICAL
     });
-    hbox.set_margin_top(5);
+
+    let hbox = new Gtk.Box({
+        orientation: Gtk.Orientation.HORIZONTAL
+    })
+
+    let hbox2 = new Gtk.Box({
+        orientation: Gtk.Orientation.HORIZONTAL
+    });
+
+    let hbox3 = new Gtk.Box({
+        orientation: Gtk.Orientation.HORIZONTAL
+    });
+
+    hbox.set_margin_top(20);
+    hbox2.set_margin_top(20);
+    hbox3.set_margin_top(20)
 
     let settingLabel = new Gtk.Label({
-        label: "Example String",
-        halign: Gtk.Align.START
+        label: "Text-input STRING    ",
+        halign: Gtk.Align.START,
     });
+    // settingLabel.set_margin_right(10) Doesn't work
 
     let settingEntry = new Gtk.Entry({
         text: this.settings.get_string('example-string')
     });
+    // settingEntry.set_margin_right(10)
+
+    let settingButton = new Gtk.Button({
+        label: "submit",
+    })
+
+    // Creating practically the same objects again and again 
+    // (setting Label, Entry, Button etc)
+    // because otherwise it doesn't show the second object. 
+    // (these labels etc can't be used second time)
+    // That's why the code is so long and cannot be shortened :/
+    
+    let settingLabel2 = new Gtk.Label({
+        label: "Text-input INT    ",
+        halign: Gtk.Align.START
+    });
+
+    //  Supposed to be int entry (idk how to filter type of input)
+    let settingEntry2 = new Gtk.Entry({
+        text: this.settings.get_string('example-string')
+    });
+
+    let settingButton2 = new Gtk.Button({
+        label: "submit",
+    })
+
+    // Objects, to the third hbox (hbox3 in this case)
+    let settingButton3 = new Gtk.Button({
+        label: "button_init",
+    })
+
+    let settingButton4 = new Gtk.Button({
+        label: "button_save",
+    })
+
     settingEntry.connect('notify::text', (entry) => {
         this.settings.set_string('example-string', entry.text);
     });
 
+    // First row of label, text input and submit button
     hbox.append(settingLabel);
     hbox.append(settingEntry);
+    hbox.append(settingButton);
 
-    return hbox;
+    // Second row of the same objects
+    hbox2.append(settingLabel2);
+    hbox2.append(settingEntry2);
+    hbox2.append(settingButton2);
+
+    // Third one with a button at first and a save button
+    hbox3.append(settingButton3)
+    hbox3.append(settingButton4)
+
+    // Appending to container (hbox)
+    vbox.append(hbox)
+    vbox.append(hbox2)
+    vbox.append(hbox3)
+
+    // Returning ONE BOX with all appended horizontal boxes 
+    return vbox;
 }
