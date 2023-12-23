@@ -8,10 +8,6 @@ const Mainloop = imports.mainloop;
 const Main = imports.ui.main;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
-// const myModule = Me.imports.myModule
-
-// const minutesToMiliseconds = myModule.minutesToMiliseconds
-// const useCommand = myModule.useCommand
 
 const prefix = '[OBX]'
 
@@ -76,3 +72,15 @@ class Extension {
 function init() {
     return new Extension();
 }
+
+useCommand = (commandInput) => {
+    let [result, stdout, stderr] = GLib.spawn_command_line_sync(commandInput)
+
+    if (result) log(`${prefix} Output: ${stdout.toString()}`)
+    else log(`${prefix} Error: ${stderr.toString()}`)
+    return true;
+}
+
+minutesToMiliseconds = (minutes) => {
+    return ( minutes * 60 ) * 1000
+} 
