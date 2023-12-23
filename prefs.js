@@ -86,9 +86,17 @@ function createStringSetting() {
     });
 
     //  Supposed to be int entry (idk how to filter type of input)
-    let settingEntry2 = new Gtk.Entry({
-        text: this.settings.get_string('example-string')
-    });
+    let adjustment = new Gtk.Adjustment({
+        lower: 0,
+        upper: 100,
+        step_increment: 1,
+    })
+
+    let settingEntry2 = new Gtk.SpinButton({
+        adjustment: adjustment,
+        climb_rate: 1.0,
+        digits: 0,
+    })
 
     let settingButton2 = new Gtk.Button({
         label: "submit",
