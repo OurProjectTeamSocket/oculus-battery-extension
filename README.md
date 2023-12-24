@@ -11,6 +11,7 @@ You need to `git clone https://github.com/OurProjectTeamSocket/oculus-battery-ex
 ```
 cd ~/.local/share/gnome-shell/extensions/
 mkdir Oculus-Battery-Extension@ourprojectteam.com
+cd Oculus-Battery-Extension@ourprojectteam.com
 git clone https://github.com/OurProjectTeamSocket/oculus-battery-extension.git .
 ```
 
