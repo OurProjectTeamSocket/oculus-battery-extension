@@ -49,8 +49,8 @@ class HelloWorldButton extends PanelMenu.Button {
 
         log(`${prefix} Ikona: ${icon}`) // This adds logs - se se logs use this: journalctl -f -o cat /usr/bin/gnome-shell and restart gnome // color text don't work
 
-        icon.connect('button_press_event', () => {
-            Log(prefix, `Show IP: ${settings.get_string('ip')}, show time: ${settings.get_string('time')}`)
+        this.connect('button_press_event', () => { // Button updated problem with icon. and a log with captial L
+            log(prefix, `Show IP: ${settings.get_string('ip')}, show time: ${settings.get_string('time')}`)
         });
 
         try {
@@ -75,18 +75,20 @@ class Extension {
 
         // TODO: Add a reset if time was changed in options
 
-        this.intervalID = GLib.timeout_add(GLib.PRIORITY_DEFAULT, minutesToMiliseconds(settings.get_string('time')), () => {
+        this.intervalID = GLib.timeout_add(GLib.PRIORITY_DEFAULT, minutesToMiliseconds(settings.get_int('time')), () => { // here I'm retarded and I tired to get a int with string method
 
-            Log(prefix, "Loop works")
+            log(prefix, "Loop works")
 
-            // TODO: Add a checking if oculus quest is sill connecting IF NOT then try to reccoenct 5 times IF THIS FAILS (IDK, maybe) stop looking and wait for refresh ( to this we need to add buton )
-            
-            if(!useCommand(`adb -s ${settings.get_string('ip')}:5555 shell dumpsys battery | grep -E "level|AC|USB"`)) {
-                // TODO: Set a error icon ( for now can be any icon )
-            } else {
-                // TODO: Check the power level, and type of chargeing and choose a good one.
-                // TODO: Check if you can set a diffrent colors for icon ( in top bar ) IF YES THEN we don't have to set other icons for other power levels we can just do a grandient from (RGB) 0,255,0 ( top level ) to 255,0,0 ( dead battery )
+        //     // TODO: Add a checking if oculus quest is sill connecting IF NOT then try to reccoenct 5 times IF THIS FAILS (IDK, maybe) stop looking and wait for refresh ( to this we need to add buton )
+            if((settings.get_string('ip') == null)||(settings.get_string('ip') == "")) {
+                log(prefix, "FATAL ERROR: ip is null or blank")
             }
+        //     if(!useCommand(`adb -s ${settings.get_string('ip')}:5555 shell dumpsys battery | grep -E "level|AC|USB"`)) {
+        //         // TODO: Set a error icon ( for now can be any icon )
+        //     } else {
+        //         // TODO: Check the power level, and type of chargeing and choose a good one.
+        //         // TODO: Check if you can set a diffrent colors for icon ( in top bar ) IF YES THEN we don't have to set other icons for other power levels we can just do a grandient from (RGB) 0,255,0 ( top level ) to 255,0,0 ( dead battery )
+        //     }
             return true; // Do function after X minutes
         });
     }
@@ -118,5 +120,9 @@ useCommand = (commandInput) => {
 }
 
 minutesToMiliseconds = (minutes) => {
+    if(minutes == null) {
+        log(prefix, "FATAL ERROR: time is null")
+        return 1
+    }
     return ( minutes * 60 ) * 1000
 } 
