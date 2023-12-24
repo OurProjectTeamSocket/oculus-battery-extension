@@ -4,6 +4,8 @@ const Gtk = imports.gi.Gtk;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
+// var settingsData;
+
 function init() {
     // ExtensionUtils.initTranslations(); 
 }
@@ -18,6 +20,8 @@ function buildPrefsWidget() {
     this.settings = new Gio.Settings({
         settings_schema: gschema.lookup('org.gnome.shell.extensions.Oculus_Battery_Extension', true)
     });
+
+    // settingsData = this.settings;
 
     let frame = new Gtk.Box({
         orientation: Gtk.Orientation.VERTICAL,
@@ -60,15 +64,18 @@ function createStringSetting() {
     hbox3.set_margin_top(20)
 
     let settingLabel = new Gtk.Label({
-        label: "Text-input STRING    ",
+        label: "IP Adress of a Quest    ",
         halign: Gtk.Align.START,
     });
     // settingLabel.set_margin_right(10) Doesn't work
 
     let settingEntry = new Gtk.Entry({
-        text: this.settings.get_string('example-string')
+        text: this.settings.get_string('ip')
     });
-    // settingEntry.set_margin_right(10)
+    // if(settings.get_string('ip') != "") { TODO: Add later a checking if IP is correct IP ( no other characters ) and isn't a null or blank space @Sycinz
+    //     settingEntry.text = settings.get_string('ip');
+    // }
+    // // settingEntry.set_margin_right(10)
 
     let settingButton = new Gtk.Button({
         label: "submit",
@@ -81,13 +88,13 @@ function createStringSetting() {
     // That's why the code is so long and cannot be shortened :/
     
     let settingLabel2 = new Gtk.Label({
-        label: "Text-input INT    ",
+        label: "Time to refresh a battery level    ",
         halign: Gtk.Align.START
     });
 
     //  Supposed to be int entry (idk how to filter type of input)
     let adjustment = new Gtk.Adjustment({
-        lower: 0,
+        lower: 1,
         upper: 100,
         step_increment: 1,
     })
@@ -98,6 +105,8 @@ function createStringSetting() {
         digits: 0,
     })
 
+    settingEntry2.value = settings.get_int('time');
+
     let settingButton2 = new Gtk.Button({
         label: "submit",
     })
@@ -107,12 +116,17 @@ function createStringSetting() {
         label: "button_init",
     })
 
+    settingButton3.connect('clicked', () => {
+        // useCommand('adb tcpip 5555 && adb connect ip:5555') TODO: this don't work for now BUT we find a way to implement file OR We will add it there too
+    });
+
     let settingButton4 = new Gtk.Button({
         label: "button_save",
     })
 
-    settingEntry.connect('notify::text', (entry) => {
-        this.settings.set_string('example-string', entry.text);
+    settingButton4.connect('clicked', () => {
+        this.settings.set_string('ip', settingEntry.text);
+        this.settings.set_int('time', settingEntry2.value);
     });
 
     // First row of label, text input and submit button
