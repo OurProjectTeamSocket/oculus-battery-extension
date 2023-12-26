@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="gnome-shell-extensions">
   <schema id="org.gnome.shell.extensions.Oculus_Battery_Extension" path="/org/gnome/shell/extensions/Oculus_Battery_Extension/">
-    <key name="example-string" type="s">
-      <default>''</default>
-      <summary>Example string</summary>
-      <description>This key is an example of a string and does not affect the functionality of your extension.</description>
+    <key name="ip" type="s">
+      <default>'192.168.0.x'</default>
+      <summary>192.168.0.x</summary>
+      <description>IP of the device.</description>
+    </key>
+    <key name="time" type="i">
+      <default>5</default>
+      <summary>Recheck time</summary>
+      <description>Time what needs to pass to check again battery of oculus.</description>
     </key>
   </schema>
 </schemalist>

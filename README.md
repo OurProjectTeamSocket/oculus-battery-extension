@@ -1,5 +1,8 @@
 # oculus-battery-extension
-ADB is needed
+ADB is required
+
+<h1 style="color:red;"># THIS CODE IS EXTREAMLY UNSTABLE AND EVEN AUTHOR DON'T KNOW IN 100% WHAT HE DOING </h1> </br>
+<h2> IF YOU EXPERIENCED A ISSUE WITH OPENING GNOME AFTER INSTALLATION EXTENSION, REMOVE THE EXTENSION</h2>
 
 This is the commands to debug the extension: `journalctl -f -o cat /usr/bin/gnome-shell | grep "OBX"` with this command you can see only logs from this extension from gnome shell.
 
@@ -8,6 +11,7 @@ You need to `git clone https://github.com/OurProjectTeamSocket/oculus-battery-ex
 ```
 cd ~/.local/share/gnome-shell/extensions/
 mkdir Oculus-Battery-Extension@ourprojectteam.com
+cd Oculus-Battery-Extension@ourprojectteam.com
 git clone https://github.com/OurProjectTeamSocket/oculus-battery-extension.git .
 ```
 
