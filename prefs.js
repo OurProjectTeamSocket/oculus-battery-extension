@@ -26,8 +26,6 @@ export default class ExamplePreferences extends ExtensionPreferences {
         group.add(row);
 
         // Create a settings object and bind the row to the `show-indicator` key
-        window._settings = this.getSettings();
-        window._settings.bind('show-indicator', row, 'active',
-            Gio.SettingsBindFlags.DEFAULT);
+        window._settings = this.getSettings('org.gnome.shell.extensions.Oculus_Battery_Extension');
     }
 }

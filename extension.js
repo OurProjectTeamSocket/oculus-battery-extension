@@ -16,7 +16,7 @@ const Indicator = GObject.registerClass (
         _init() {
             super._init(0.0, _('Quest Battery Indicator'));
 
-            log(prefix, Me.dir.get_path())
+            log(prefix, Extension.path)
             
             this.add_child(new St.Icon({
                 icon_name: 'face-smile-symbolic',
