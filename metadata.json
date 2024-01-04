@@ -3,9 +3,10 @@
     "description": "Shows a oculus battery level",
     "uuid": "Oculus-Battery-Extension@ourprojectteam.com",
     "shell-version": [
-        "44"
+        "44", "45"
     ],
-    "schemas": [
-        "org.gnome.shell.extensions.Oculus_Battery_Extension"
-    ]
+    "settings-schema": "org.gnome.shell.extensions.Oculus_Battery_Extension",
+    "url": "https://github.com/OurProjectTeamSocket/oculus-battery-extension/tree/main",
+    "session-modes": ["user"],
+    "version": 2
 }
