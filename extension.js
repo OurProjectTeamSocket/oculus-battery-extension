@@ -9,7 +9,7 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 
 // Global varables
 const prefix = '[OBX]'
-var path = ""
+var path
 var _settings
 
 const Indicator = GObject.registerClass (
@@ -17,10 +17,18 @@ const Indicator = GObject.registerClass (
         _init() {
             super._init(0.0, _('Quest Battery Indicator'));
             
-            this.add_child(new St.Icon({
-                gicon: Gio.icon_new_for_string(path + '/Images/icon.png'),
-                style_class: 'system-status-icon',
-            }));
+            log(prefix, "Adding icon");
+
+            try {
+                this.add_child(new St.Icon({
+                    gicon: Gio.icon_new_for_string(path + '/Images/icon.png'),
+                    style_class: 'system-status-icon',
+                }));
+            } catch(error) {
+                log(prefix, "Error: ", error);
+            }
+
+            log(prefix, "Added icon");
 
             this.connect('button_press_event', () => { // Button updated problem with icon. and a log with captial L
                 log(prefix, "Path to icon", Gio.icon_new_for_string(path + '/Images/icon.png'));
@@ -34,18 +42,22 @@ const Indicator = GObject.registerClass (
 
 export default class IndicatorExampleExtension extends Extension {
     enable() {
-        this._indicator = new Indicator();
-        Main.panel.addToStatusArea(this.uuid, this._indicator);
-
-        path = Extension.path;
+        // Getting data
+        path = this.path;
+        log(prefix, "path1", path);
 
         _settings = this.getSettings('org.gnome.shell.extensions.Oculus_Battery_Extension');
+        log(prefix, "settings1", _settings);
+
+        this._indicator = new Indicator();
+        Main.panel.addToStatusArea(this.uuid, this._indicator);
 
     }
 
     disable() {
         this._indicator.destroy();
         this._indicator = null;
+        _settings = null;
     }
 }
 
