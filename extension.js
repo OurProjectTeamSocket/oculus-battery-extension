@@ -10,6 +10,7 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 // Global varables
 const prefix = '[OBX]'
 var path = ""
+var _settings
 
 const Indicator = GObject.registerClass (
     class Indicator extends PanelMenu.Button {
@@ -22,8 +23,9 @@ const Indicator = GObject.registerClass (
             }));
 
             this.connect('button_press_event', () => { // Button updated problem with icon. and a log with captial L
-                log(prefix, "Path to icon",Gio.icon_new_for_string(path + '/Images/icon.png'))
-                log(prefix, `Show IP: ${this._settings.get_string('ip')}, show time: ${this._settings.get_string('time')}`)
+                log(prefix, "Path to icon", Gio.icon_new_for_string(path + '/Images/icon.png'));
+                log(prefix, "Path", path + '/Images/icon.png');
+                log(prefix, `Show IP: ${_settings.get_string('ip')}, show time: ${_settings.get_string('time')}`);
             });
                 
         }
@@ -37,7 +39,7 @@ export default class IndicatorExampleExtension extends Extension {
 
         path = Extension.path;
 
-        this._settings = this.getSettings('org.gnome.shell.extensions.Oculus_Battery_Extension');
+        _settings = this.getSettings('org.gnome.shell.extensions.Oculus_Battery_Extension');
 
     }
 
