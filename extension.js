@@ -1,4 +1,5 @@
 import GObject from 'gi://GObject';
+import Gio from 'gi://Gio';
 import St from 'gi://St';
 
 import {Extension, gettext as _} from 'resource:///org/gnome/shell/extensions/extension.js';
@@ -8,26 +9,23 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 
 // Global varables
 const prefix = '[OBX]'
-let gschema
-var settings
+var path = ""
 
 const Indicator = GObject.registerClass (
     class Indicator extends PanelMenu.Button {
         _init() {
             super._init(0.0, _('Quest Battery Indicator'));
-
-            log(prefix, Extension.path)
             
             this.add_child(new St.Icon({
-                icon_name: 'face-smile-symbolic',
+                gicon: Gio.icon_new_for_string(path + '/Images/icon.png'),
                 style_class: 'system-status-icon',
             }));
 
             this.connect('button_press_event', () => { // Button updated problem with icon. and a log with captial L
+                log(prefix, "Path to icon",Gio.icon_new_for_string(path + '/Images/icon.png'))
                 log(prefix, `Show IP: ${this._settings.get_string('ip')}, show time: ${this._settings.get_string('time')}`)
             });
-
-            this.menu.addMenuItem(item);
+                
         }
     }
 );
@@ -37,15 +35,7 @@ export default class IndicatorExampleExtension extends Extension {
         this._indicator = new Indicator();
         Main.panel.addToStatusArea(this.uuid, this._indicator);
 
-        // gschema = Gio.SettingsSchemaSource.new_from_directory(
-        //     Me.dir.get_child('schemas').get_path(),
-        //     Gio.SettingsSchemaSource.get_default(),
-        //     false
-        // );
-
-        // settings = new Gio.Settings({
-        //     settings_schema: gschema.lookup('org.gnome.shell.extensions.Oculus_Battery_Extension', true)
-        // });
+        path = Extension.path;
 
         this._settings = this.getSettings('org.gnome.shell.extensions.Oculus_Battery_Extension');
 
