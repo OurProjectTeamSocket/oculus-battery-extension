@@ -21,7 +21,7 @@ const Indicator = GObject.registerClass (
 
             try {
                 this.add_child(new St.Icon({
-                    gicon: Gio.icon_new_for_string(path + '/Images/icon.png'),
+                    gicon: Gio.icon_new_for_string(path + '/Images/oculusicon.svg'),
                     style_class: 'system-status-icon',
                 }));
             } catch(error) {
