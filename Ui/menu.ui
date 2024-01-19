@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="AdwPreferencesWindow" id="Dialog">
+    <property name="default-width">400</property>
+    <property name="default-height">300</property>
+    <property name="title" translatable="yes">Dialog</property>
+    <child>
+      <object class="AdwPreferencesPage">
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwPreferencesRow" id="ip_row">
+                <property name="title" translatable="yes">Ip:</property>
+                <child>
+                  <object class="GtkEntry" id="lineEdit"/>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesRow" id="time_row">
+                <property name="title" translatable="yes">Time:</property>
+                <child>
+                  <object class="GtkEntry" id="lineEdit_2"/>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="buttonBox">
+        <property name="orientation">horizontal</property>
+        <child>
+          <object class="GtkButton" id="cancel_button">
+            <property name="label" translatable="yes">Cancel</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="ok_button">
+            <property name="label" translatable="yes">Ok</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
